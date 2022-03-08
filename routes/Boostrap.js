@@ -1,0 +1,10 @@
+exports.systemRouter = require('./systemRoutes');
+exports.permissionRouter = require('./RBAC/permissionRoutes');
+exports.roleRouter = require('./RBAC/roleRoutes');
+exports.roleRouter = require('./RBAC/roleRoutes');
+exports.authRouter = require('./authRoutes');
+exports.userRouter = require('./userRoutes');
+exports.businessRouter = require('./businessRoutes');
+exports.buyerRouter = require('./buyerRoutes');
+exports.productRouter = require('./productRoutes');
+exports.orderRouter = require('./orderRoutes');
