@@ -2,73 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63c1ed6e-a9ef-4906-918c-7c4656d6f8d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/nodejs_assessment.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/validation.middleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jane-stitches-API.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/appError.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/appError.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusinessController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyerController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductRatingController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RBAC/PermissionController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RBAC/PermissionUserController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RBAC/RoleController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RBAC/RoleUserController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SystemController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Business.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Buyer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/NewsLetter.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Validations/user.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/OrderedProduct.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductRating.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductReview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RBAC/Permission.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RBAC/PermissionRole.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RBAC/PermissionUser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RBAC/Role.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/RBAC/RoleUser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Shipping.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/System.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/GuardServiceProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/GuardServiceProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.env" beforeDir="false" afterPath="$PROJECT_DIR$/config.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emails/agent_account_created.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/emails/contact_admin_created.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/emails/contact_user_created.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/emails/player_account_created.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/system/system-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/system/system-jscbntwz5s3j5cmjrjzjs01esbpbrf-1638013508944-favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/system/system-tdbz0g2ag8fkov1qz8jxa7qu81jy5d-1638020033777-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/system/system-tsxb4uvbwk2kh225297fxlzyhtiyj3-1638013508929-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/uploads/images/system/system-vbmym4pcbjcad53xobzx7mxrruxyem-1638020033794-favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/Boostrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/Boostrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/RBAC/permissionRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/RBAC/roleRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/businessRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/buyerRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/orderRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/productRatingRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/productRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/systemRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/userRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Email.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/EmailEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/EmailEngine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,13 +38,14 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "18.14.0",
     "javascript.nodejs.core.library.typings.version": "18.14.0",
-    "last_opened_file_path": "C:/Users/ADUROTIMI STEVEN/Documents/Companies/AdebayoAdeleke/Test/nodejs_assessment/app/Providers",
+    "last_opened_file_path": "C:/Users/ADUROTIMI STEVEN/Documents/Companies/AdebayoAdeleke/Test/nodejs_assessment",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ADUROTIMI STEVEN\Documents\Companies\AdebayoAdeleke\Test\nodejs_assessment" />
       <recent name="C:\Users\ADUROTIMI STEVEN\Documents\Companies\AdebayoAdeleke\Test\nodejs_assessment\app\Providers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -125,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1683018355739</updated>
-      <workItem from="1683018357658" duration="21977000" />
+      <workItem from="1683018357658" duration="22524000" />
     </task>
     <servers />
   </component>
