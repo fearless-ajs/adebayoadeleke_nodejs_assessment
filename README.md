@@ -8,4 +8,4 @@
 
 LINK TO API DOCS = https://documenter.getpostman.com/view/14951844/2s93eU3uZ8
 LINK TO GITHUB REPO = https://github.com/nancytec/adebayoadeleke_nodejs_assessment.git 
-LINk TO LIVE APP = http://laravel-assessement.janes.com.ng
+LINk TO LIVE APP = https://nodejs-assessement.onrender.com
