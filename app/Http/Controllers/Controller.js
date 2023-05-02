@@ -2,6 +2,7 @@ const catchAsync = require('./../../Exceptions/catchAsync');
 const AppError = require('./../../Exceptions/appError');
 const APIFeatures = require('../../../utils/apiFeatures');
 const Core = require('./../../Helpers/Core');
+const mongoose = require("mongoose");
 
 
 class Controller extends Core{
@@ -10,6 +11,15 @@ class Controller extends Core{
     }
 
     deleteOne = Model => catchAsync(async (req, res, next) => {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return next(
+                new AppError(
+                    'Invalid id.',
+                    422
+                )
+            );
+        }
+
         const doc = await Model.findByIdAndDelete(req.params.id);
 
         if(!doc){

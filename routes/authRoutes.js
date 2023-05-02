@@ -1,26 +1,44 @@
 const express = require('express');
-const UserController = require('./../app/Http/Controllers/UserController');
 const AuthController = require('./../app/Http/Controllers/AuthController');
-
+const validationMiddleware = require("../app/Http/Middleware/validation.middleware");
+const  userValidation  = require("./../app/Http/Validations/user.validation");
+const Guard = require('./../app/Providers/GuardServiceProvider');
 const router = express.Router()
 
-router.route('/sign-up')
-    .post(AuthController.signUp);
+router.route('/register')
+    .post(
+        validationMiddleware(userValidation.register),
+        AuthController.uploadUserPhoto,
+        AuthController.resizeUserPhoto,
+        AuthController.signUp
+    );
 
-router.route('/sign-in')
-    .post(AuthController.signIn);
+router.route('/login')
+    .post(
+        validationMiddleware(userValidation.login),
+        AuthController.signIn
+    );
 
-router.route('/sign-out')
+router.route('/logout')
     .post(AuthController.logout);
 
-router.route('/is-logged-in')
-    .post(AuthController.isLoggedIn);
+router.route('/me')
+    .post(
+        Guard.authGuard,
+        AuthController.isLoggedIn
+    );
 
 router.route('/reset-password')
-    .post(AuthController.forgotPassword);
+    .post(
+        validationMiddleware(userValidation.resetPassword),
+        AuthController.forgotPassword
+    );
 
-router.route('/reset-password/:token')
-    .patch(AuthController.resetPassword);
+router.route('/choose-new-password/:token')
+    .patch(
+        validationMiddleware(userValidation.updatePassword),
+        AuthController.resetPassword
+    );
 
 
 module.exports = router;

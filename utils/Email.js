@@ -14,14 +14,6 @@ module.exports = class Email extends EmailEngine {
     }
 
 
-    async sendPlayerAccountCreationMessage () {
-        await this.send('player_account_created', 'Player account created successfully');
-    }
-
-    async sendAgentAccountCreationMessage () {
-        await this.send('agent_account_created', 'Player account created successfully');
-    }
-
     async sendPasswordReset(){
         await this.send(
             'passwordReset',
@@ -34,14 +26,6 @@ module.exports = class Email extends EmailEngine {
             'passwordUpdated',
             'Password updated successfully'
         );
-    }
-
-    async sendNewContactUserMessage () {
-        await this.send('contact_user_created', 'Welcome to SportsPadi');
-    }
-
-    async sendNewContactAdminMessage () {
-        await this.send('contact_admin_created', 'New visitor registered');
     }
 
 };

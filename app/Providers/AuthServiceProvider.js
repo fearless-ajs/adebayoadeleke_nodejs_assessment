@@ -1,8 +1,5 @@
 const jwt  = require('jsonwebtoken');
-const RoleUser = require('./../Models/RBAC/RoleUser');
-const Role = require('./../Models/RBAC/Role');
-const Permission = require('./../Models/RBAC/Permission');
-const PermissionUser = require('./../Models/RBAC/PermissionUser');
+
 const AppError = require('./../Exceptions/appError');
 
 class AuthServiceProvider {
@@ -11,7 +8,7 @@ class AuthServiceProvider {
         this.permission = undefined;
     }
 
-    createSendToken =  async (user, roleId=undefined, permissionId=undefined, statusCode, res) => {
+    createSendToken =  async (user,  statusCode, res) => {
         const token = this.signToken(user._id);
 
         //Sets the cookie also
@@ -29,28 +26,12 @@ class AuthServiceProvider {
         //Remove password from the output
         user.password = undefined;
 
-        if (permissionId !== undefined){
-            //Fetch user Permissions
-            this.permission = await Permission.findById(permissionId).select(['displayName', 'name']);
-        }else {
-            this.permission = await PermissionUser.find({user: user._id}).select(['-_id', 'permission'])
-        }
-
-        if (roleId !== undefined){
-            //Fetch user Roles also
-            this.role =  await Role.findById(roleId).select(['displayName', 'name']);
-        }else {
-            this.role = await RoleUser.find({user: user._id}).select(['-_id', 'role'])
-        }
-
         await res.status(statusCode).json({
-            status: 'success',
+            statusCode: 'SUCCESS',
             token,
-            user: {
+            data: {
                 ...user._doc
-            },
-            roles: this.role,
-            permissions: this.permission
+            }
         });
     };
 
@@ -73,19 +54,6 @@ class AuthServiceProvider {
         });
     };
 
-    userRoles = async (userId) => {
-        return RoleUser.find({ user: userId }).populate({
-            path: 'role',
-            field: 'name'
-        });
-    }
-
-    userPermissions = async (userId) => {
-        return PermissionUser.find({user: userId}).populate({
-            path: 'permission',
-            select: 'name'
-        });
-    }
 
 }
 module.exports = AuthServiceProvider;

@@ -26,8 +26,8 @@ const handleTokenExpiredError = () => new AppError('Your token has! Please login
 
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
-        'status': err.status,
-        'err': err,
+        'statusCode': err.status,
+        // 'err': err,
         'message': err.message,
         'stack': err.stack
     });
@@ -37,7 +37,7 @@ const sendErrorProd = (err, res) => {
     //Operational, trusted error: send message to client
     if (err.isOperational){
         res.status(err.statusCode).json({
-            'status': err.status,
+            'statusCode': err.status,
             'message': err.message
         });
 
@@ -48,7 +48,7 @@ const sendErrorProd = (err, res) => {
 
         // 2) Send a generic message
         res.status(500).json({
-            'status': 'fail',
+            'statusCode': 'fail',
             'message': 'Something went very wrong!'
         });
     }

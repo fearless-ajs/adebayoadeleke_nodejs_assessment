@@ -5,7 +5,7 @@ const nodemailMailGun = require('nodemailer-mailgun-transport');
 module.exports = class EmailEngine {
     constructor(user, url) {
         this.to = user.email;
-        this.firstName = user.name.split(' ')[0];
+        this.firstName = user.firstname;
         this.url = url;
         this.from = `SportsPadi <${process.env.MAILGUN_MAIL_FROM}>`;
     }

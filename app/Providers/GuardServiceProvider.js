@@ -37,18 +37,9 @@ class GuardServiceProvider extends AuthServiceProvider{
             return next(new AppError('The user belonging to this token does not exist'));
         }
 
-        //4. Check if user changed password after the token was issued
-        //Will return true if user changed password after authentication token is issued
-        if(currentUser.changedPasswordAfter(decoded.iat)){
-            return next(new AppError('User recently changed password! Please login again', 401));
-        }
 
         //GRANT ACCESS TO PROTECTED ROUTES
-        const permissions = this.userPermissions(currentUser._id);
-        const roles = this.userRoles(currentUser._id);
         req.user = currentUser; //This user details will be useful in the future
-        req.user.roles = roles; //This user roles will be useful in the future
-        req.user.permissiona = permissions; //This user permissions will be useful in the future
         next();
 
     });
@@ -56,17 +47,9 @@ class GuardServiceProvider extends AuthServiceProvider{
 
     //We cannot pass argument to a middleware so we wrap it in another function
     // that returns the middleware
-    restrictToRoles = (roles) => {
+    restrictToAdmin = () => {
         return async (req, res, next) => {
-            let authorizedRoles = [...roles];
-            const userRoles = await this.userRoles(req.user._id);
-
-            userRoles.forEach(role => {
-                if (authorizedRoles.includes(role.role.name)){
-                    this.isAuthorized = true;
-                }
-            });
-            if (!this.isAuthorized){
+            if (!req.user.is_admin){
                 return next(
                     new AppError('Your are not authorized to perform this action', 403)
                 );
@@ -75,19 +58,11 @@ class GuardServiceProvider extends AuthServiceProvider{
         };
     };
 
-    //We cannot pass argument to a middleware so we wrap it in another function
-    // that returns the middleware
-    restrictToPermissions = (permissions) => {
+    restrictToOwnerOrAdmin = () => {
         return async (req, res, next) => {
-            let authorizedPermissions = [...permissions];
-            const userPermissions = await this.userPermissions(req.user._id);
-
-            userPermissions.forEach(permission => {
-                this.isPermitted = authorizedPermissions.includes(permission.permission.name);
-            });
-            if (!this.isPermitted){
+            if (!req.user.is_admin && !(req.params._id === req.user._id)){
                 return next(
-                    new AppError('Your are not permitted to perform this action', 403)
+                    new AppError('Your are not authorized to perform this action', 403)
                 );
             }
             next();

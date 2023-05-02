@@ -4,8 +4,8 @@ const Controller = require('./Controller');
 const User = require('./../../Models/User');
 const catchAsync = require('./../../Exceptions/catchAsync');
 const AppError = require('./../../Exceptions/appError');
-const RoleUser = require('./../../Models/RBAC/RoleUser');
-const PermissionUser = require('./../../Models/RBAC/PermissionUser');
+const mongoose = require("mongoose");
+
 
 class UserController extends Controller{
     constructor() {
@@ -45,10 +45,10 @@ class UserController extends Controller{
         req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
 
         await sharp(req.file.buffer)
-            .resize(500, 500)
+            .resize(150, 150)
             .toFormat('jpeg')
             .jpeg({ quality: 90 })
-            .toFile(`public/uploads/images/users/${req.file.filename}`);
+            .toFile(`public/uploads/images/${req.file.filename}`);
 
         next();
     });
@@ -57,7 +57,7 @@ class UserController extends Controller{
     getAllUsers = this.getAll(User);
 
     getUser = catchAsync(async (req, res, next) => {
-        let query = User.findById(req.params.id).select(['name', 'email', 'phone', 'active',  'createdAt', 'updatedAt']);
+        let query = User.findById(req.params.id).select(['lastname', 'firstname', 'middlename', 'email', 'phone', 'active']);
 
         const doc  = await query;
         // Tour.findOne({ _id: req.params.id });
@@ -66,25 +66,26 @@ class UserController extends Controller{
             return next(new AppError('No document found with that ID', 404))
         }
 
-        //Fetch user Roles also
-        const roles = await RoleUser.find({user: doc._id}).select('-__v');
-
-        //Fetch user Permissions
-        const permissions = await PermissionUser.find({user: doc._id}).select('-__v');
 
         res.status(200).json({
             status: 'success',
             data: {
                 data: doc,
-            },
-            roles: roles,
-            permissions
+            }
         })
     });
 
-    updateMe = catchAsync(async (req, res, next) => {
+    update = catchAsync(async (req, res, next) => {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return next(
+                new AppError(
+                    'Invalid user id.',
+                    422
+                )
+            );
+        }
         // 1) Create error if user POSTs password data
-        if (req.body.password || req.body.passwordConfirm) {
+        if (req.body.password) {
             return next(
                 new AppError(
                     'This route is not for password updates. Please use /updateMyPassword.',
@@ -94,24 +95,88 @@ class UserController extends Controller{
         }
 
         // 2) Filtered out unwanted fields names that are not allowed to be updated
-        const filteredBody = this.filterObj(req.body, 'name', 'phone');
+        const filteredBody = this.filterObj(req.body, 'lastname', 'middlename', 'firstname', 'image', 'email', 'phone');
         //For saving image name to user record
         if (req.file) filteredBody.image = req.file.filename;
 
         // 3) Update user document
-        const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, filteredBody, {
             new: true,
+            useFindAndModify: false,
             runValidators: true
         });
 
         res.status(200).json({
-            status: 'success',
+            statusCode: 'SUCCESS',
             data: {
                 user: updatedUser
             }
         });
     });
 
+    setUserAdminStatus = catchAsync(async (req, res, next) => {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return next(
+                new AppError(
+                    'Invalid user id.',
+                    422
+                )
+            );
+        }
+
+        // 2) Filtered out unwanted fields names that are not allowed to be updated
+        const filteredBody = this.filterObj(req.body, 'is_admin');
+        //For saving image name to user record
+
+
+        const user = await User.findOne({ _id: req.params.id })
+        console.log(user);
+        // 3) Update user document
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, filteredBody, {
+            new: true,
+            useFindAndModify: false,
+            runValidators: true
+        });
+
+
+        res.status(200).json({
+            statusCode: 'SUCCESS',
+            data: {
+                user: updatedUser
+            }
+        });
+    });
+
+    setUserActiveStatus = catchAsync(async (req, res, next) => {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return next(
+                new AppError(
+                    'Invalid user id.',
+                    422
+                )
+            );
+        }
+
+        // 2) Filtered out unwanted fields names that are not allowed to be updated
+        const filteredBody = this.filterObj(req.body, 'active');
+        //For saving image name to user record
+
+        // 3) Update user document
+        // console.log(req.params.id);
+        const updatedUser = await User.findOneAndUpdate({_id: req.params.id}, filteredBody, {
+            new: true,
+            runValidators: true,
+        });
+
+        res.status(200).json({
+            statusCode: 'SUCCESS',
+            data: {
+                user: updatedUser
+            }
+        });
+    });
+
+    delete = this.deleteOne(User);
 }
 
 module.exports = new UserController;

@@ -4,12 +4,20 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
     userSchema = new mongoose.Schema({
-        name: {
+        lastname: {
             type: String,
-            required: [true, 'Name field is required'],
+            required: true,
             trim: true,
-            maxlength: [200, 'Name should not be more than 200 characters'],
-            minlength: [2, 'Name should not be less than 2 characters']
+        },
+        firstname: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        middlename: {
+            type: String,
+            required: true,
+            trim: true,
         },
         email: {
             type: String,
@@ -33,25 +41,16 @@ const bcrypt = require('bcryptjs');
             type: String,
             default: "user-avatar.jpg"
         },
-        passwordConfirm: {
-            type: String,
-            required: [true, 'Please confirm your password'],
-            validate: {
-                //This custom validation works with save and create only
-                //If needed use save to perform update operation
-                validator: function (el) {
-                    return el === this.password
-                },
-                message: 'Passwords are not the same'
-            }
-        },
         passwordChangedAt: Date,
         passwordResetToken: String,
         passwordResetExpires: Date,
         active: {
             type: Boolean,
             default: true,
-            select: false
+        },
+        is_admin: {
+            type: Boolean,
+            default: false,
         }
     });
 
