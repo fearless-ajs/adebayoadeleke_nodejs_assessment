@@ -3,7 +3,6 @@ const { promisify } = require('util');
 const jwt  = require('jsonwebtoken');
 const catchAsync = require('./../../Exceptions/catchAsync');
 const AppError = require('./../../Exceptions/appError');
-const sendEmail = require('./../../../utils/email');
 const AuthServiceProvider = require('./../../Providers/AuthServiceProvider');
 const User = require('./../../Models/User');
 const multer = require("multer");
